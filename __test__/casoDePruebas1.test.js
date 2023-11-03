@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const {click, type, getText} = require('../libs/helpers')
-const timeDelay = 3_600  // 1 hora de espera maxima (caso extremo de testeo)
+const timeDelay = 600_000_000  // 
 let browser 
 let page 
 
@@ -16,13 +16,13 @@ describe('Automatizacion del formulario de DemoQa', () => {
     // Dandole el valor a page, con la nueva instancia de pagina creada.
     page = await browser.newPage()
 
-    await page.goto('https://demoqa.com/automation-practice-form', { waituntil: 'networkidel0' })  // pasandole la URL a testear y debe esperar a que todo cargue para poder testear.
+    await page.goto('https://demoqa.com/automation-practice-form', { waituntil: 'networkidel1' })  // pasandole la URL a testear y debe esperar a que todo cargue para poder testear.
   }, timeDelay);
 
   // Hook afterAll 
   afterAll ( async () => { 
     // espera 3 segundos antes que cierre el navegador, despues de haber hecho el test.
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise(resolve => setTimeout(resolve, 30_000));
     await browser.close()
   }, timeDelay);   
 
@@ -38,5 +38,5 @@ describe('Automatizacion del formulario de DemoQa', () => {
     await type(page, '#firstName', 'Angel', typeDelay)
     await type(page, '#lastName', 'Hackerman', typeDelay)
     await type(page, '#userEmail', 'AngelHackerman@emailsecreto.com', typeDelay)
-  })
+  }, timeDelay)
 })
