@@ -1,5 +1,27 @@
 {
   "dependencies": {
+    "@axe-core/puppeteer": "^4.8.1",
+    "jest": "^29.7.0",
     "puppeteer": "^21.5.0"
+  },
+  "name": "agexportautomationform",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AngelDHackerman/Agezport-Form-Automation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AngelDHackerman/Agezport-Form-Automation/issues"
+  },
+  "homepage": "https://github.com/AngelDHackerman/Agezport-Form-Automation#readme",
+  "description": "",
+  "devDependencies": {
+    "prettier": "^3.0.3"
   }
 }
