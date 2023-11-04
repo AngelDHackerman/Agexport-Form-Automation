@@ -22,7 +22,7 @@ describe('Automatizacion del formulario de DemoQa', () => {
   // Hook afterAll 
   afterAll ( async () => { 
     // espera 3 segundos antes que cierre el navegador, despues de haber hecho el test.
-    await new Promise(resolve => setTimeout(resolve, 30_000));
+    await new Promise(resolve => setTimeout(resolve, 3_000));
     await browser.close()
   }, timeDelay);   
 
