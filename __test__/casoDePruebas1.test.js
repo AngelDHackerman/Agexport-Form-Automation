@@ -82,5 +82,16 @@ describe('Automatizacion del formulario de DemoQa', () => {
     // input de tipo file
     await uploadFile(page, '#uploadPicture', '/home/angel/Imágenes/fondoDePantalla/Programador-puppeteer.png')
 
+    // ? Testeando la seccion de Address
+    await type(page, '#currentAddress', '2500 Ave NW, 308 suite', typeDelay)
+    await clickDelayed(page, '#state')
+    await pressEnter(page)
+    await page.waitForTimeout(500)
+    await clickDelayed(page, '#city')
+    await pressEnter(page)
+
+    // ? Haciendo click en submit
+    await clickDelayed(page, '#submit')
+
   }, timeDelay)
 })
