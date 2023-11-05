@@ -7,11 +7,11 @@ const {
   pressEnter,
   uploadFile,
 } = require('../libs/helpers')
-const timeDelay = 600_000_000  // 
+const timeDelay = 600_000_000
 let browser 
 let page 
 
-describe('Automatizacion del formulario de DemoQa', () => { 
+describe('Caso De Pruebas 1, Happy Path', () => { 
   // Hook beforeAll
   beforeAll ( async () => { 
     browser = await puppeteer.launch({ 

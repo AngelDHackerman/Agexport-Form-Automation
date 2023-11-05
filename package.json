@@ -9,7 +9,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --forceExit",
-    "AutomatizacionFormularioDemoQa": "./__test__/casoDePruebas1.test.js"
+    "testCasoDePruebas1_HappyPath": "./__test__/casoDePruebas1_HappyPath.test.js",
+    "testCasoDePruebas2_NegativeCase1": "./__test__/casoDePruebas2-NegativeCase1.test.js"
   },
   "repository": {
     "type": "git",
