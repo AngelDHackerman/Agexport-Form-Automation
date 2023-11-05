@@ -1,8 +1,8 @@
 const puppeteer = require('puppeteer');
 const {
   click, 
-  type, 
-  getText, 
+  type,
+  typeDelay, 
   clickDelayed, 
   pressEnter,
   uploadFile,
@@ -15,12 +15,10 @@ describe ('Caso De Pruebas Negativos', () => {
     // Hook beforeAll
     beforeAll ( async () => { 
       browser = await puppeteer.launch({ 
-        headless: false,  // Nos permite ver lo que pasa mientras el robot testea
-        defaultViewport: null, // Set default viewport to null
-        args: ['--start-maximized'] // inicia el navegador para que use toda la pantalla
+        headless: false,
+        defaultViewport: null,
+        args: ['--start-maximized']
       });
-  
-      // Dandole el valor a page, con la nueva instancia de pagina creada.
       page = await browser.newPage()
   
       await page.goto('https://demoqa.com/automation-practice-form', { waituntil: 'networkidel1' })  // pasandole la URL a testear y debe esperar a que todo cargue para poder testear.
@@ -37,7 +35,34 @@ describe ('Caso De Pruebas Negativos', () => {
     // Ejecutando los casos de prueba. 
     it('Caso De Pruebas 2, Negative Case 1', async () => { 
       // Caso de Uso 2 (Negative Case 1): Un usuario omite un campo obligatorio y trata de enviar el formulario.
-      
+      // ? Testeando el autocomplete y hobbies
+    await click(page, '#subjectsContainer > div > div.subjects-auto-complete__value-container.subjects-auto-complete__value-container--is-multi.css-1hwfws3')
+    await type(page, '#subjectsContainer > div > div.subjects-auto-complete__value-container.subjects-auto-complete__value-container--is-multi.css-1hwfws3', 'math')
+    await page.waitForTimeout(1000)
+    await pressEnter(page)
+
+    await clickDelayed(page, '#hobbies-checkbox-1')
+    await clickDelayed(page, '#hobbies-checkbox-2')
+    await clickDelayed(page, '#hobbies-checkbox-3')
+
+    // ? Testeando la subida de archivos
+    // input de tipo file
+    await uploadFile(page, '#uploadPicture', '/home/angel/Imágenes/fondoDePantalla/Programador-puppeteer.png')
+
+    // ? Testeando la seccion de Address
+    await type(page, '#currentAddress', '2500 Ave NW, 308 suite', typeDelay)
+    await clickDelayed(page, '#state')
+    await pressEnter(page)
+    await page.waitForTimeout(500)
+    await clickDelayed(page, '#city')
+    await pressEnter(page)
+
+    // ? Haciendo click en submit
+    await clickDelayed(page, '#submit')
+
+    // ? Validacion para estar seguros que el modal de datos NO es visible (Datos obligatorios no enviados)
+    const modal = await page.$('body > div.fade.modal.show')
+    expect(modal).toBeNull();
 
     }, timeDelay)
 })
