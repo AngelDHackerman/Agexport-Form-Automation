@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const {click, type, getText} = require('../libs/helpers')
+const {click, type, getText, clickDelayed, pressEnter} = require('../libs/helpers')
 const timeDelay = 600_000_000  // 
 let browser 
 let page 
@@ -35,8 +35,32 @@ describe('Automatizacion del formulario de DemoQa', () => {
 
     await page.waitForSelector('#submit')
 
-    await type(page, '#firstName', 'Angel', typeDelay)
-    await type(page, '#lastName', 'Hackerman', typeDelay)
-    await type(page, '#userEmail', 'AngelHackerman@emailsecreto.com', typeDelay)
+    // ? Testeando los primeros text inputs
+    // await type(page, '#firstName', 'Angel', typeDelay)
+    // await type(page, '#lastName', 'Hackerman', typeDelay)
+    // await type(page, '#userEmail', 'AngelHackerman@emailsecreto.com', typeDelay)
+    // await clickDelayed(page, '#gender-radio-1')
+    // await type(page, '#userNumber', '5025658970')
+
+    // ? Testeando los campos de date of birth
+    await clickDelayed(page, '#dateOfBirthInput')
+    // abrir el dropdown de años 
+    await clickDelayed(page, '#dateOfBirth > div.react-datepicker__tab-loop > div.react-datepicker-popper > div > div > div.react-datepicker__month-container > div.react-datepicker__header > div.react-datepicker__header__dropdown.react-datepicker__header__dropdown--select > div.react-datepicker__year-dropdown-container.react-datepicker__year-dropdown-container--select > select')
+    // Escribe el año 1995 para facilitar busqueda
+    await type(page, '#dateOfBirth > div.react-datepicker__tab-loop > div.react-datepicker-popper > div > div > div.react-datepicker__month-container > div.react-datepicker__header > div.react-datepicker__header__dropdown.react-datepicker__header__dropdown--select > div.react-datepicker__year-dropdown-container.react-datepicker__year-dropdown-container--select > select','1995')
+    // Crea un evento "enter" para seleccionar el año 
+    await pressEnter(page)
+    // click en el dropdown para los meses
+    await clickDelayed(page, '#dateOfBirth > div.react-datepicker__tab-loop > div.react-datepicker-popper > div > div > div.react-datepicker__month-container > div.react-datepicker__header > div.react-datepicker__header__dropdown.react-datepicker__header__dropdown--select > div.react-datepicker__month-dropdown-container.react-datepicker__month-dropdown-container--select > select')
+    // escribe 'november' para seleccionar noviembre
+    await type(page, '#dateOfBirth > div.react-datepicker__tab-loop > div.react-datepicker-popper > div > div > div.react-datepicker__month-container > div.react-datepicker__header > div.react-datepicker__header__dropdown.react-datepicker__header__dropdown--select > div.react-datepicker__month-dropdown-container.react-datepicker__month-dropdown-container--select > select', 'november')
+    // crea un evento 'enter'
+    await pressEnter(page)
+    await click(page, '#dateOfBirth > div.react-datepicker__tab-loop > div.react-datepicker-popper > div > div > div.react-datepicker__month-container > div.react-datepicker__month > div:nth-child(4) > div.react-datepicker__day.react-datepicker__day--020')
+    await pressEnter(page)
+
+    // ? Testeando el autocomplete
+    await type(page, '#subjectsContainer > div > div.subjects-auto-complete__value-container.subjects-auto-complete__value-container--is-multi.css-1hwfws3', 'math')
+
   }, timeDelay)
 })

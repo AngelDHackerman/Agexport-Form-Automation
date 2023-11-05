@@ -103,6 +103,14 @@ module.exports = {
     } catch (err) {
       throw new Error(`Error scrolling to element: ${err} (try to use and ID)`);
     }
-  }
+  },
 
+  // Enter event
+  pressEnter: async function (page) {
+    try {
+      await page.keyboard.press('Enter');
+    } catch (err) {
+      throw new Error(`Error pressing Enter: ${err}`);
+    }
+  },
 }
