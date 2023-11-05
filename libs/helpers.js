@@ -113,4 +113,20 @@ module.exports = {
       throw new Error(`Error pressing Enter: ${err}`);
     }
   },
+
+  uploadFile: async function (page, fileInputSelector, filePath) { 
+    try { 
+      // Espera a que el input de archivo esté presente
+      await page.waitForSelector(fileInputSelector);
+
+      // Obtiene el manejador del elemento
+      const inputHandle = await page.$(fileInputSelector);
+
+      // Establece la ruta del archivo en el input de archivo
+      await inputHandle.uploadFile(filePath);
+
+    } catch (err) { 
+      throw new Error(`Error uploading file: ${err}`)
+    }
+  },
 }
