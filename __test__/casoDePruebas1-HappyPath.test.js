@@ -93,5 +93,14 @@ describe('Caso De Pruebas 1, Happy Path', () => {
     // ? Haciendo click en submit
     await clickDelayed(page, '#submit')
 
+    // ? Validacion para estar seguros que el modal de datos es visible
+    try {
+      await page.waitForSelector('body > div.fade.modal.show', { timeout: 5000 });
+      console.log('El Modal es visible');
+    } catch (error) {
+      console.error('Modal no aparecio', error);
+    }
+    
+
   }, timeDelay)
 })

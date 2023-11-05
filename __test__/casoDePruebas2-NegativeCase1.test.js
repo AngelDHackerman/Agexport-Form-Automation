@@ -36,6 +36,8 @@ describe ('Caso De Pruebas Negativos', () => {
     
     // Ejecutando los casos de prueba. 
     it('Caso De Pruebas 2, Negative Case 1', async () => { 
+      // Caso de Uso 2 (Negative Case 1): Un usuario omite un campo obligatorio y trata de enviar el formulario.
+      
 
     }, timeDelay)
 })
