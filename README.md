@@ -8,7 +8,7 @@ npm i jest-image-snapshot
 npm i @axe-core/puppeteer
 ```
 
-Agrega en la sección "scripts" del archivo package.json el nombre del test a ejecutar. Por ejemplo:
+Agrega en la sección "scripts" (si no se encuentra en el archivo package.json, de lo contrario ignorar) del archivo package.json el nombre del test a ejecutar. Por ejemplo:
 
 ```
   "scripts": {
